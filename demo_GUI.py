@@ -88,52 +88,44 @@ def crear_boton_formato(nombre,num_imagen):
     boton.setStyleSheet(css)
     return boton
 
+
+######### FORMATOS DE PATOLOGIA CLINICA ###########
+#Se manda a llamar la funcion para crear el formulario de hemograma y mostrarlo
 def pantalla_hemograma(raza):
     limpiar_Area()
     #Scroll area para los botones
     scroll_area = QScrollArea()
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-    botones_widget = crear_formato_hemograma_completo(raza) #ESTA LINEA 20/05/2024 4:00 AM crear_formato_analisis_clinico
+    botones_widget = crear_formato_hemograma_completo(raza)
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
 
     grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
 
-def pantalla_bioquimica(raza):
-    limpiar_Area()
-    #Scroll area para los botones
-    scroll_area = QScrollArea()
-    scroll_area.setWidgetResizable(True)
-    scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-    botones_widget = crear_formato_analisis_clinico(raza) #ESTA LINEA 20/05/2024 4:00 AM crear_formato_analisis_clinico
-    scroll_area.setWidget(botones_widget)
-    scroll_area.setStyleSheet(estilo_scroll_area)
-    widgets["scrollarea"].append(scroll_area) 
-
-    grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
-
+#Se manda a llamar la funcion para crear el formulario de urianalisis y mostrarlo
 def pantalla_urianalisis():
     limpiar_Area()
     #Scroll area para los botones
     scroll_area = QScrollArea()
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-    botones_widget = crear_formato_urianalisis_completo() #ESTA LINEA 20/05/2024 4:00 AM crear_formato_analisis_clinico
+    botones_widget = crear_formato_urianalisis_completo() 
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
 
     grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
 
-def pantalla_otis1():
+#Se manda a llamar la funcion para crear el formulario de bioquimica y mostrarlo
+def pantalla_bioquimica(raza):
     limpiar_Area()
     #Scroll area para los botones
     scroll_area = QScrollArea()
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-    botones_widget = crear_formato_otis1_completo() #ESTA LINEA 20/05/2024 4:00 AM crear_formato_analisis_clinico
+    botones_widget = crear_formato_analisis_clinico(raza) 
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
@@ -146,7 +138,22 @@ def pantalla_citologia():
     scroll_area = QScrollArea()
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-    botones_widget = crear_formato_citologia_completo() #ESTA LINEA 20/05/2024 4:00 AM crear_formato_analisis_clinico
+    botones_widget = crear_formato_citologia_completo() 
+    scroll_area.setWidget(botones_widget)
+    scroll_area.setStyleSheet(estilo_scroll_area)
+    widgets["scrollarea"].append(scroll_area) 
+
+    grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
+
+######### FORMATOS DE ENFERMEDADES INFECCIOSAS ###########
+
+def pantalla_otis1():
+    limpiar_Area()
+    #Scroll area para los botones
+    scroll_area = QScrollArea()
+    scroll_area.setWidgetResizable(True)
+    scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+    botones_widget = crear_formato_otis1_completo() 
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
@@ -159,29 +166,26 @@ def pantalla_koh():
     scroll_area = QScrollArea()
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-    botones_widget = crear_formato_KOH_completo() #ESTA LINEA 20/05/2024 4:00 AM crear_formato_analisis_clinico
+    botones_widget = crear_formato_KOH_completo() 
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
 
     grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
 
+
 def en_progreso():
     limpiar_Area()
-    
     # Crear el layout principal
     layout_principal = QVBoxLayout()
      # Cargar la imagen
-    imagen = QPixmap('img/Trabajando.png')  # Asegúrate de poner el camino correcto a tu imagen
-
+    imagen = QPixmap('img/Trabajando.png')
     # Configurar QLabel para mostrar la imagen
     label_imagen = QLabel()
     label_imagen.setPixmap(imagen)
     label_imagen.setScaledContents(True)  # Ajusta la imagen al tamaño del QLabel si es necesario
-
     # Añadir el QLabel al layout principal
     layout_principal.addWidget(label_imagen)
-
     # Configurar el layout principal en el widget central si fuera necesario
     central_widget = QWidget()
     central_widget.setLayout(layout_principal)
@@ -191,6 +195,7 @@ def en_progreso():
 def prueba():
     elegir_raza_hemograma()
 
+#Pantalla de hemorgrama donde se elige el tipo de raza con la que se trabajara
 def elegir_raza_hemograma():
     limpiar_Area()
     scroll_area = QScrollArea()
@@ -252,6 +257,7 @@ def elegir_raza_hemograma():
 
     grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
 
+#Pantalla de bioquimica donde se elige el tipo de raza con la que se trabajara
 def elegir_raza_bioquimica():
     limpiar_Area()
     scroll_area = QScrollArea()
