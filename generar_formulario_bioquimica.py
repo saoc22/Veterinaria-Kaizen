@@ -1,6 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QTextEdit, QButtonGroup, QHBoxLayout, QLabel, QPushButton, QCheckBox, QFileDialog
-from PyQt5.QtGui import QPixmap
-from PyQt5 import QtGui, QtCore
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QTextEdit, QButtonGroup, QHBoxLayout, QLabel, QPushButton, QCheckBox, QFileDialog
 from estilos import *
 from pdf_bioquimica import *
 
@@ -18,6 +16,7 @@ def crear_formato_analisis_clinico(raza):
     widget_principal = QWidget()
     layout_principal = QVBoxLayout(widget_principal)
 
+    ############### FORMULAS PARA CALCULAR OPERACIONES ###############
     def calcular_noconjugada():
         global vgm
         try:
@@ -27,8 +26,8 @@ def crear_formato_analisis_clinico(raza):
             else:
               hematocrito = float(campos_comunes[17][1].text())  
               eritrocitos = float(campos_comunes[18][1].text()) 
-            vgm = hematocrito - eritrocitos  # Fórmula simplificada
-            vgm_label.setText(f"{vgm:.2f}")  # Establece el valor en el label
+            vgm = hematocrito - eritrocitos  
+            vgm_label.setText(f"{vgm:.2f}")  
         except ValueError:
             vgm_label.setText("Error")
 
@@ -44,8 +43,8 @@ def crear_formato_analisis_clinico(raza):
             elif (raza.lower() == 'gato'):
               prot = float(campos_comunes[27][1].text())  
               albu = float(campos_comunes[28][1].text()) 
-            globulinas = prot - albu  # Fórmula simplificada
-            globulinas_label.setText(f"{globulinas:.2f}")  # Establece el valor en el label
+            globulinas = prot - albu  
+            globulinas_label.setText(f"{globulinas:.2f}")  
         except ValueError:
             globulinas_label.setText("Error")
 
@@ -61,8 +60,8 @@ def crear_formato_analisis_clinico(raza):
             elif (raza.lower() == 'gato'):
               albu = float(campos_comunes[28][1].text())  
               glob = float(campos_comunes[27][1].text()) - float(campos_comunes[28][1].text()) 
-            relacion = albu/glob  # Fórmula simplificada
-            relacion_label.setText(f"{relacion:.2f}")  # Establece el valor en el label
+            relacion = albu/glob  
+            relacion_label.setText(f"{relacion:.2f}")  
         except ValueError:
             relacion_label.setText("Error")
 
@@ -84,8 +83,8 @@ def crear_formato_analisis_clinico(raza):
               pota = float(campos_comunes[20][1].text())
               cloro = float(campos_comunes[20][1].text())
               bicar = float(campos_comunes[20][1].text())
-            anion = (sodio+pota) - (cloro+bicar)  # Fórmula simplificada
-            anion_label.setText(f"{anion:.2f}")  # Establece el valor en el label
+            anion = (sodio+pota) - (cloro+bicar)  
+            anion_label.setText(f"{anion:.2f}")  
         except ValueError:
             anion_label.setText("Error")
 
@@ -101,8 +100,8 @@ def crear_formato_analisis_clinico(raza):
             elif (raza.lower() == 'gato'):
               sodi = float(campos_comunes[34][1].text())  
               clor = float(campos_comunes[35][1].text())
-            iones = sodi - clor  # Fórmula simplificada
-            iones_label.setText(f"{iones:.2f}")  # Establece el valor en el label
+            iones = sodi - clor  
+            iones_label.setText(f"{iones:.2f}")  
         except ValueError:
             iones_label.setText("Error")
     
@@ -116,8 +115,8 @@ def crear_formato_analisis_clinico(raza):
             gluc = float(campos_comunes[12][1].text())
             urea = float(campos_comunes[13][1].text())
 
-            osmo = (1.86*sodi) + 9 + gluc + urea  # Fórmula simplificada
-            osmo_label.setText(f"{osmo:.2f}")  # Establece el valor en el label
+            osmo = (1.86*sodi) + 9 + gluc + urea  
+            osmo_label.setText(f"{osmo:.2f}")  
         except ValueError:
             osmo_label.setText("Error")
 
@@ -235,7 +234,6 @@ def crear_formato_analisis_clinico(raza):
           "Triglicéridos:": "0.6 – 1.2",
           "Bilirrubina total:": "<5.2",
           "Bilirrubina conjugada:": "-",
-          #"Bilirrubina no conjugada:": "-",
           "Alaninamino transferasa (ALT):": "<70",
           "Aspartatoamino transferasa (AST):": "<55",
           "Fosfatasa alcalina (FA):": "<189",
@@ -244,17 +242,12 @@ def crear_formato_analisis_clinico(raza):
           "Lipasa:": "<300",
           "Proteínas totales:": "56 – 75",
           "Albúmina:": "29 – 40",
-          #"Globulinas calculado:": "23 – 39",
-          #"Relación A/G calculado:": "0.78 – 1.46",
           "Calcio total:": "2.17 – 2.94",
           "Fósforo:": "0.80 – 1.80",
           "Potasio:": "3.6 – 5.3",
           "Sodio:": "143 – 158",
           "Cloro:": "110 – 125",
           "Bicarbonato:": "17 – 25",
-          #"Anion gap calculado:": "12 – 24",
-          #"Diferencia de iones fuertes calculado:": "30 – 40",
-          #"Osmolalidakd calculada:": "285 – 320",
         }
     elif raza.lower() == 'gato':
         etiquetas_especificas = {
@@ -265,7 +258,6 @@ def crear_formato_analisis_clinico(raza):
           "Triglicéridos:": "0.6 – 1.2",
           "Bilirrubina total:": "<6.8",
           "Bilirrubina conjugada:": "-",
-          #"Bilirrubina no conjugada:": "-",
           "Alaninamino transferasa (ALT):": "<72",
           "Aspartatoamino transferasa (AST):": "<61",
           "Fosfatasa alcalina (FA):": "<107",
@@ -275,17 +267,12 @@ def crear_formato_analisis_clinico(raza):
           "Lipasa:": "<300",
           "Proteínas totales:": "59 – 81",
           "Albúmina:": "26 – 38",
-          #"Globulinas calculado:": "29 – 47",
-          #"Relación A/G calculado:": "0.58 – 1.16",
           "Calcio total:": "2.05 – 2.76",
           "Fósforo:": "0.96 – 1.96",
           "Potasio:": "3.6 – 5.3",
           "Sodio:": "143 – 158",
           "Cloro:": "110 – 125",
           "Bicarbonato:": "14 – 24",
-          #"Anion gap calculado:": "10 – 27",
-          #"Diferencia de iones fuertes calculado:": "30 – 40",
-          #"Osmolalidad calculada:": "290 – 330",
 
         }
     elif raza.lower() == 'caballo':
@@ -296,23 +283,18 @@ def crear_formato_analisis_clinico(raza):
           "Colesterol:": "1.81 – 4.65",
           "Bilirrubina total:": "14.0 – 54.0",
           "Bilirrubina conjugada:": "6.0 – 12.0",
-          #"Bilirrubina no conjugada:": "4.0 – 44.0",
           "Aspartatoamino transferasa (AST):": "<450",
           "Proteínas totales:": "53 – 71",
           "Fosfatasa alcalina (FA):": "<453",
           "Albúmina:": "31 – 39",
           "Gamma glutamiltransferasa (GGT):": "<22",
           "Creatincinasa (CK):": "<425",
-          #"Globulinas calculado:": "20 – 35",
-          #"Relación A/G calculado:": "0.89 – 1.65",
           "Calcio total:": "2.79 – 3.22",
           "Fósforo:": "0.89 – 1.77",
           "Potasio:": "3.4 – 5.0",
           "Sodio:": "132 – 141",
           "Cloro:": "98 – 105",
           "Bicarbonato:": "27 – 34",
-          #"Anion gap calculado:": "4 – 13",
-          #"Diferencia de iones fuertes calculado:": "34 – 43",
         }
 
     # Agregar campos específicos basados en la raza
@@ -532,7 +514,6 @@ def crear_formato_analisis_clinico(raza):
                 "datos_analisis_trigliceridos": campos_comunes[16][1].text(),
                 "datos_analisis_bilirrubina_total": campos_comunes[17][1].text(),
                 "datos_analisis_bilirrubina_conjugada": campos_comunes[18][1].text(),
-                #"datos_analisis_bilirrubina_no_conjugada": campos_comunes[19][1].text(),
                 "datos_analisis_alaninamino_transferasa": campos_comunes[20][1].text(),
                 "datos_analisis_aspartatoamino_transferasa": campos_comunes[21][1].text(),
                 "datos_analisis_fosfatasa_alcalina": campos_comunes[22][1].text(),
@@ -541,17 +522,12 @@ def crear_formato_analisis_clinico(raza):
                 "datos_analisis_lipasa": campos_comunes[25][1].text(),
                 "datos_analisis_proteinas_totales": campos_comunes[26][1].text(),
                 "datos_analisis_albumina": campos_comunes[27][1].text(),
-                #"datos_analisis_globulinas": campos_comunes[28][1].text(),
-                #"datos_analisis_relacion_AG": campos_comunes[29][1].text(),
                 "datos_analisis_calcio_total": campos_comunes[30][1].text(),
                 "datos_analisis_fosforo": campos_comunes[31][1].text(),
                 "datos_analisis_potasio": campos_comunes[32][1].text(),
                 "datos_analisis_sodio": campos_comunes[33][1].text(),
                 "datos_analisis_cloro": campos_comunes[34][1].text(),
                 "datos_analisis_bicarbonato": campos_comunes[35][1].text(),
-                #"datos_analisis_anion_gap": campos_comunes[36][1].text(),
-                #"datos_analisis_diferencia_iones_fuertes": campos_comunes[37][1].text(),
-                #"datos_analisis_osmolalidad": campos_comunes[38][1].text(),
                 "datos_analisis_otros_hallazgos": campos_comunes[39][1].toPlainText(),
                 "datos_analisis_interpretaciones": campos_comunes[40][1].toPlainText(),
                 "datos_analisis_comentarios": campos_comunes[41][1].toPlainText(),
@@ -580,7 +556,6 @@ def crear_formato_analisis_clinico(raza):
                 "datos_analisis_trigliceridos": campos_comunes[16][1].text(),
                 "datos_analisis_bilirrubina_total": campos_comunes[17][1].text(),
                 "datos_analisis_bilirrubina_conjugada": campos_comunes[18][1].text(),
-                #"datos_analisis_bilirrubina_no_conjugada": campos_comunes[19][1].text(),
                 "datos_analisis_alaninamino_transferasa": campos_comunes[20][1].text(),
                 "datos_analisis_aspartatoamino_transferasa": campos_comunes[21][1].text(),
                 "datos_analisis_fosfatasa_alcalina": campos_comunes[22][1].text(),
@@ -590,17 +565,12 @@ def crear_formato_analisis_clinico(raza):
                 "datos_analisis_lipasa": campos_comunes[26][1].text(),
                 "datos_analisis_proteinas_totales": campos_comunes[27][1].text(),
                 "datos_analisis_albumina": campos_comunes[28][1].text(),
-                #"datos_analisis_globulinas": campos_comunes[29][1].text(),
-                #"datos_analisis_relacion_AG": campos_comunes[30][1].text(),
                 "datos_analisis_calcio_total": campos_comunes[31][1].text(),
                 "datos_analisis_fosforo": campos_comunes[32][1].text(),
                 "datos_analisis_potasio": campos_comunes[33][1].text(),
                 "datos_analisis_sodio": campos_comunes[34][1].text(),
                 "datos_analisis_cloro": campos_comunes[35][1].text(),
                 "datos_analisis_bicarbonato": campos_comunes[36][1].text(),
-                #"datos_analisis_anion_gap": campos_comunes[37][1].text(),
-                #"datos_analisis_diferencia_iones_fuertes": campos_comunes[38][1].text(),
-                #"datos_analisis_osmolalidad": campos_comunes[39][1].text(),
                 "datos_analisis_otros_hallazgos": campos_comunes[40][1].toPlainText(),
                 "datos_analisis_interpretaciones": campos_comunes[41][1].toPlainText(),
                 "datos_analisis_comentarios": campos_comunes[42][1].toPlainText(),
@@ -628,23 +598,18 @@ def crear_formato_analisis_clinico(raza):
                 "datos_analisis_colesterol": campos_comunes[15][1].text(),
                 "datos_analisis_bilirrubina_total": campos_comunes[16][1].text(),
                 "datos_analisis_bilirrubina_conjugada": campos_comunes[17][1].text(),
-                #"datos_analisis_bilirrubina_no_conjugada": campos_comunes[18][1].text(),
                 "datos_analisis_aspartatoamino_transferasa": campos_comunes[19][1].text(),
                 "datos_analisis_fosfatasa_alcalina": campos_comunes[21][1].text(),
                 "datos_analisis_ggt": campos_comunes[23][1].text(),
                 "datos_analisis_creatincinasa": campos_comunes[24][1].text(),
                 "datos_analisis_proteinas_totales": campos_comunes[20][1].text(),
                 "datos_analisis_albumina": campos_comunes[22][1].text(),
-                #"datos_analisis_globulinas": campos_comunes[25][1].text(),
-                #"datos_analisis_relacion_AG": campos_comunes[26][1].text(),
                 "datos_analisis_calcio_total": campos_comunes[27][1].text(),
                 "datos_analisis_fosforo": campos_comunes[28][1].text(),
                 "datos_analisis_potasio": campos_comunes[29][1].text(),
                 "datos_analisis_sodio": campos_comunes[30][1].text(),
                 "datos_analisis_cloro": campos_comunes[31][1].text(),
                 "datos_analisis_bicarbonato": campos_comunes[32][1].text(),
-                #"datos_analisis_anion_gap": campos_comunes[33][1].text(),
-                #"datos_analisis_diferencia_iones_fuertes": campos_comunes[34][1].text(),
                 "datos_analisis_otros_hallazgos": campos_comunes[35][1].toPlainText(),
                 "datos_analisis_interpretaciones": campos_comunes[36][1].toPlainText(),
                 "datos_analisis_comentarios": campos_comunes[37][1].toPlainText(),
