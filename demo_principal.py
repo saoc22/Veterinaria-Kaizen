@@ -5,6 +5,7 @@ from PyQt5 import QtGui
 #function imports
 from demo_GUI import pantalla_formatos, grid
 
+#Comentario estupido
 #initiallize GUI application
 app = QApplication(sys.argv)
 
