@@ -298,7 +298,10 @@ def crear_formato_analisis_clinico(raza):
         "Bicarbonato:": "14 – 24",
         "Anion gap:": "10 - 27",
         "Iones fuertes:": "30 - 40",
-        "Osmolalidad:": "290 - 330"
+        "Osmolalidad:": "290 - 330",
+        "Bilirrubina NC:": "-",
+        "Globulinas:": "23 - 39",
+        "Relación A/G:": "0.78 - 1.46"
       }
     elif raza.lower() == 'caballo':
       etiquetas_especificas = {
@@ -322,6 +325,9 @@ def crear_formato_analisis_clinico(raza):
         "Bicarbonato:": "27 – 34",
         "Anion gap:": "4 - 13",
         "Iones fuertes:": "34 - 43",
+        "Bilirrubina NC:": "-",
+        "Globulinas:": "23 - 39",
+        "Relación A/G:": "0.78 - 1.46"
       }
 
     bandera = 0
