@@ -52,7 +52,6 @@ estilo_label_formulario = '''
 estilo_label_limites = '''
   border: 1px solid 'white';
   font-size: 18px;
-  margin-top:10px;
   color: #56BE94;
   font-weight: bold;
 '''
@@ -61,7 +60,8 @@ estilo_input_text = '''
   border: 1px solid #C2C2C2;
   background-color:white;
   font-size:18px;
-  max-width: 265px;
+  max-width: 310px;
+  
 '''
 
 estilo_input_text_antibiotico = '''
