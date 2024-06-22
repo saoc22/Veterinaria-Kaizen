@@ -663,6 +663,10 @@ def generar_hemograma(valores):
     pdf.cell(w=44, h=5, txt=txt_rel, border='LBR', align='C', ln=1, fill=0) 
   ###Seccion exclusiva de caballo
 
+  dec = "{:.2f}"
+  if valores['decimales'] == "u":
+     dec = "{:.1f}"
+  
   #FILA 12 - Leucocitos
   y1 = pdf.get_y()
   pdf.set_xy(x1+6, y1)
@@ -699,7 +703,7 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(neutrofilosRes)), border='LR', align='C', ln=0, fill=0)
+  pdf.cell(w=39, h=5, txt=str(dec.format(neutrofilosRes)), border='LR', align='C', ln=0, fill=0)
   if float(neutrofilosRes)<min_neu:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
@@ -725,7 +729,7 @@ def generar_hemograma(valores):
         pdf.set_font('RalewayB', '', 11)
     else:
         pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=str("{:.2f}".format(bandasRes)), border='LR', align='C', ln=0, fill=0)
+    pdf.cell(w=39, h=5, txt=str(dec.format(bandasRes)), border='LR', align='C', ln=0, fill=0)
     if float(bandasRes)<min_ban:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
@@ -743,7 +747,7 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
     else:
         pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=str("{:.2f}".format(bandasRes)), border='LR', align='C', ln=0, fill=0)
+    pdf.cell(w=39, h=5, txt=str(dec.format(bandasRes)), border='LR', align='C', ln=0, fill=0)
     if float(bandasRes)!=uban:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt= '!', border='LR', align='C', ln=0, fill=0)
@@ -765,10 +769,10 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(metamielocitosRes)), border='LR', align='C', ln=0, fill=0)
+  pdf.cell(w=39, h=5, txt=str(dec.format(metamielocitosRes)), border='LR', align='C', ln=0, fill=0)
   if float(metamielocitosRes)!=umet:
     pdf.set_font('RedditSans-Regular', '', 10)
-    pdf.cell(w=5, h=5, txt='!', border='LR', align='C', ln=0, fill=0)
+    pdf.cell(w=5, h=5, txt='↑', border='LR', align='C', ln=0, fill=0)
   else:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '-', border='LR', align='C', ln=0, fill=0)
@@ -788,10 +792,10 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(mielocitosRes)), border='LR', align='C', ln=0, fill=0)
+  pdf.cell(w=39, h=5, txt=str(dec.format(mielocitosRes)), border='LR', align='C', ln=0, fill=0)
   if float(metamielocitosRes)!=umie:
     pdf.set_font('RedditSans-Regular', '', 10)
-    pdf.cell(w=5, h=5, txt='!', border='LR', align='C', ln=0, fill=0)
+    pdf.cell(w=5, h=5, txt='↑', border='LR', align='C', ln=0, fill=0)
   else:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '-', border='LR', align='C', ln=0, fill=0)
@@ -811,7 +815,7 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(linfocitosRes)), border='LR', align='C', ln=0, fill=0)
+  pdf.cell(w=39, h=5, txt=str(dec.format(linfocitosRes)), border='LR', align='C', ln=0, fill=0)
   if float(linfocitosRes)<min_lin:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
@@ -836,7 +840,7 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(monocitosRes)), border='LR', align='C', ln=0, fill=0)
+  pdf.cell(w=39, h=5, txt=str(dec.format(monocitosRes)), border='LR', align='C', ln=0, fill=0)
   if float(monocitosRes)<min_mono:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
@@ -861,7 +865,7 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(eosinofilosRes)), border='LR', align='C', ln=0, fill=0)
+  pdf.cell(w=39, h=5, txt=str(dec.format(eosinofilosRes)), border='LR', align='C', ln=0, fill=0)
   if float(eosinofilosRes)<min_eos:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
@@ -888,13 +892,13 @@ def generar_hemograma(valores):
         pdf.set_font('RalewayB', '', 11)
     else:
         pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=str("{:.2f}".format(basofilosRes)), border='LBR', align='C', ln=0, fill=0)
+    pdf.cell(w=39, h=5, txt=str(dec.format(basofilosRes)), border='LBR', align='C', ln=0, fill=0)
     if float(basofilosRes)!=ubas:
       pdf.set_font('RedditSans-Regular', '', 10)
-      pdf.cell(w=5, h=5, txt='!', border='LR', align='C', ln=0, fill=0)
+      pdf.cell(w=5, h=5, txt='↑', border='LBR', align='C', ln=0, fill=0)
     else:
       pdf.set_font('RedditSans-Regular', '', 10)
-      pdf.cell(w=5, h=5, txt= '-', border='LR', align='C', ln=0, fill=0)
+      pdf.cell(w=5, h=5, txt= '-', border='LBR', align='C', ln=0, fill=0)
     pdf.set_font('Raleway', '', 10)
     pdf.cell(w=44, h=5, txt='X10\u2079/L', border='LBR', align='C', ln=0, fill=0)
     pdf.cell(w=44, h=5, txt='Raros', border='BLR', align='C', ln=1, fill=0)
@@ -904,7 +908,7 @@ def generar_hemograma(valores):
       pdf.set_font('RalewayB', '', 11)
     else:
         pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=str("{:.2f}".format(basofilosRes)), border='LBR', align='C', ln=0, fill=0)
+    pdf.cell(w=39, h=5, txt=str(dec.format(basofilosRes)), border='LBR', align='C', ln=0, fill=0)
     if float(basofilosRes)<min_bas:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt='↓', border='LR', align='C', ln=0, fill=0)
@@ -925,16 +929,28 @@ def generar_hemograma(valores):
   pdf.set_xy(x1+6, y1)
   pdf.set_font('RalewayB', '', 10)
   pdf.set_text_color(0, 0, 0)
-  pdf.cell(w=44, h=5, txt='Morfología de eritrocitos:', border='LB', align='L', ln=0, fill=0)
-  pdf.cell(w=132, h=5, txt=morfoEri, border='RB', align='L', ln=1, fill=0)
+  if morfoEri=="":
+    pdf.cell(w=44, h=5, txt='Morfología de eritrocitos:', border='LB', align='L', ln=0, fill=0)
+    pdf.cell(w=132, h=5, txt='-', border='RB', align='L', ln=1, fill=0)
+  else:
+    pdf.cell(w=176, h=5, txt='Morfología de eritrocitos:', border='LR', align='L', ln=1, fill=0)
+    y1 = pdf.get_y()
+    pdf.set_xy(x1+6, y1)
+    pdf.multi_cell(w=176, h=5, txt=morfoEri, border='RBL', align='L', fill=0)
 
   #FILA 21 - Morfología de leucocitos
   y1 = pdf.get_y()
   pdf.set_xy(x1+6, y1)
   pdf.set_font('RalewayB', '', 10)
   pdf.set_text_color(0, 0, 0)
-  pdf.cell(w=44, h=5, txt='Morfología de leucocitos:', border='LB', align='L', ln=0, fill=0)
-  pdf.cell(w=132, h=5, txt=morfoLeu, border='RB', align='L', ln=1, fill=0)
+  if morfoLeu=="":
+    pdf.cell(w=44, h=5, txt='Morfología de leucocitos:', border='LB', align='L', ln=0, fill=0)
+    pdf.cell(w=132, h=5, txt='-', border='RB', align='L', ln=1, fill=0)
+  else:
+    pdf.cell(w=176, h=5, txt='Morfología de leucocitos:', border='LR', align='L', ln=1, fill=0)
+    y1 = pdf.get_y()
+    pdf.set_xy(x1+6, y1)
+    pdf.multi_cell(w=176, h=4, txt=morfoLeu, border='RLB', align='L', fill=0)
 
   #FILA 22 - Otros hallazgos
   if otros!='':
@@ -942,8 +958,10 @@ def generar_hemograma(valores):
     pdf.set_xy(x1+6, y1)
     pdf.set_font('RalewayB', '', 10)
     pdf.set_text_color(0, 0, 0)
-    pdf.cell(w=44, h=5, txt='Otros hallazgos:', border='LB', align='L', ln=0, fill=0)
-    pdf.cell(w=132, h=5, txt=otros, border='RB', align='L', ln=1, fill=0)
+    pdf.cell(w=176, h=5, txt='Otros hallazgos:', border='LR', align='L', ln=1, fill=0)
+    y1 = pdf.get_y()
+    pdf.set_xy(x1+6, y1)
+    pdf.multi_cell(w=176, h=5, txt=otros, border='RLB', align='L', fill=0)
 
   #FILA 23 - Interpretacion
   if interpretacion!='':

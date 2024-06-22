@@ -332,7 +332,7 @@ def crear_formato_hemograma_completo(raza):
           layout_principal.addLayout(layout_horizontal2)
           #Separador
           separador = QWidget()
-          separador.setFixedHeight(70)
+          separador.setFixedHeight(50)
           separador.setStyleSheet("background-color: transparent;") 
           layout_principal.addWidget(separador)
           bandera = 1
@@ -467,8 +467,8 @@ def crear_formato_hemograma_completo(raza):
     layout_principal.addWidget(titulo_linea)
 
     labels_especiales = {
-      "VGM:": QLabel("0.0"),
-      "CGMH:": QLabel("0.0"),
+      "VGM:": QLabel("0"),
+      "CGMH:": QLabel("0"),
     }
 
     labels_especiales2 = {
@@ -567,7 +567,7 @@ def crear_formato_hemograma_completo(raza):
         layout_principal.addLayout(layout_horizontal2)
         #Separador
         separador = QWidget()
-        separador.setFixedHeight(70)
+        separador.setFixedHeight(50)
         separador.setStyleSheet("background-color: transparent;") 
         layout_principal.addWidget(separador)
     
@@ -630,7 +630,8 @@ def crear_formato_hemograma_completo(raza):
             "datos_analisis_hallazgos": campos_comunes[35][1].toPlainText(),
             "datos_analisis_interpretacion": campos_comunes[37][1].toPlainText(),
             "datos_analisis_comentarios": campos_comunes[37][1].toPlainText(),
-            "firma_path": ruta_firma
+            "firma_path": ruta_firma,
+            "decimales": "d" if cb_dos.isChecked() else "u" ,
         }
         print(valores)
         generar_hemograma(valores)
@@ -671,7 +672,8 @@ def crear_formato_hemograma_completo(raza):
             "datos_analisis_hallazgos": campos_comunes[34][1].toPlainText(),
             "datos_analisis_interpretacion": campos_comunes[35][1].toPlainText(),
             "datos_analisis_comentarios": campos_comunes[36][1].toPlainText(),
-            "firma_path": ruta_firma
+            "firma_path": ruta_firma,
+            "decimales": "d" if cb_dos.isChecked() else "u" ,
         }
         print(valores)
         generar_hemograma(valores)
