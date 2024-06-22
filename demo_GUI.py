@@ -1,14 +1,14 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget, QFileDialog, QGridLayout, QScrollArea,QMessageBox,QHBoxLayout
-from PyQt5.QtGui import QPixmap,QIcon
-from PyQt5 import QtGui, QtCore
+from PyQt5.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QGridLayout, QScrollArea,QMessageBox,QHBoxLayout
+from PyQt5.QtGui import QPixmap
+from PyQt5 import QtCore
 from PyQt5.QtGui import QCursor
-import sys
 from generar_formulario_hemograma import *
 from generar_formulario_bioquimica import *
 from generar_formulario_urianalisis import *
 from generar_formulario_citologia import *
 from generar_formulario_koh import *
 from generar_formulario_otis1 import *
+from generar_formulario_antiograma_2 import *
 from pdf_hemograma import *
 from firma import *
 from estilos import *
@@ -154,6 +154,19 @@ def pantalla_otis1():
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
     botones_widget = crear_formato_otis1_completo() 
+    scroll_area.setWidget(botones_widget)
+    scroll_area.setStyleSheet(estilo_scroll_area)
+    widgets["scrollarea"].append(scroll_area) 
+
+    grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
+
+def pantalla_antiograma():
+    limpiar_Area()
+    #Scroll area para los botones
+    scroll_area = QScrollArea()
+    scroll_area.setWidgetResizable(True)
+    scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+    botones_widget = crear_formato_antiograma_completo() 
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
@@ -381,7 +394,8 @@ def crear_botones_desplazables_enfermedades_infecciosas():
         ("Análisis Micológico", en_progreso),
         ("Dx Micro Otitis 1 oído", pantalla_otis1),
         ("Dx Micro Otitis 2 oídos", pantalla_otis1),
-        ("Diagnóstico Bacteriologico con antiograma", pantalla_otis1),
+        ("Diagnóstico Bacteriologico con antiograma 1", pantalla_otis1),
+        ("Diagnóstico Bacteriologico con antiograma 2", pantalla_antiograma),
         ("Bacteriología", en_progreso),
         ("Parasitología", en_progreso),
         ("KOH", pantalla_koh),
