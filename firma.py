@@ -4,6 +4,8 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QCursor
 from pathlib import Path
 import sys
+import json
+import shutil
 
 from estilos import *
 
@@ -16,6 +18,21 @@ cedulas = {}
 cedula_input = None
 
 titulo_input = None
+
+json_file_path = "doctores.json"
+
+def cargar_json():
+    if not Path(json_file_path).exists():
+        with open(json_file_path, 'w') as file:
+            json.dump({}, file)
+    with open(json_file_path, 'r') as file:
+        return json.load(file)
+
+def guardar_json(data):
+    with open(json_file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+
+
 
 def generar_popup(titulo,encabezado,cuerpo):
     popup = QMessageBox()
@@ -52,23 +69,66 @@ def añadir_nueva_celula():
     global cedula_input
     global cedulas
     global titulo_input
+    global nombre_doctor
+    global imagen_path
+    global input_text_1
 
     popup = None
 
     cedula = cedula_input.text()
     titulo = titulo_input.text()
+    nombre = nombre_doctor.text()
 
-    if cedula not in cedulas:
-        cedulas[cedula] = titulo
-        titulo_input.setText(" ")
-        cedula_input.setText(" ")
-        if(len(cedulas) == 1): popup = generar_popup("Confirmacion","Cedula y Titulo, agregados !","")
-        elif(len(cedulas) > 1): popup = generar_popup("Confirmacion","Cedula y Titulo, agregados !","Se han registrado "+str(len(cedulas))+" cedulas")
+    if not nombre or not cedula or not titulo or not imagen_path:
+        popup = generar_popup("Error", "Todos los campos son obligatorios", "")
     else:
-        popup = generar_popup("Dato no ingresado","Cedula y Titulo, registrados previamente !","")
+        data = cargar_json()
+        if nombre not in data:
+            data[nombre] = {"cedulas": [], "firma": ""}
 
+        # Si la firma ya está agregada, no agregarla de nuevo
+        if data[nombre]["firma"] == "":
+            # Mueve la imagen a la carpeta "Firmas" dentro del proyecto
+            firma_dir = Path.cwd() / "Firmas" / nombre
+            firma_dir.mkdir(parents=True, exist_ok=True)
+            firma_destino = firma_dir / Path(imagen_path).name
+            shutil.copy(imagen_path, firma_destino)
+            data[nombre]["firma"] = str(firma_destino)
+
+        # Añade la nueva cédula al registro del doctor
+        data[nombre]["cedulas"].append({"titulo": titulo, "cedula": cedula})
+        guardar_json(data)
+
+        cedulas[cedula] = titulo
+        cedula_input.setText("")
+
+        # Bloquear los campos de nombre y firma después de la primera adición
+        nombre_doctor.setDisabled(True)
+        input_text_1.setDisabled(True)
+
+        popup = generar_popup("Confirmación", "Cédula y título agregados!", f"Se han registrado {len(cedulas)} cédulas")
+
+    if popup:
+        popup.exec()
     print(cedulas)
-    popup.exec()
+
+
+def mostrar_informacion_doctor():
+    global nombre_doctor
+
+    nombre = nombre_doctor.text()
+    data = cargar_json()
+
+    if nombre in data:
+        info = data[nombre]
+        cedulas_info = "\n".join([f"Cédula: {cedula['cedula']}, Título: {cedula['titulo']}" for cedula in info["cedulas"]])
+        firma_info = f"Firma: {info['firma']}" if info["firma"] else "Firma: No registrada"
+        mensaje = f"Nombre: {nombre}\n\nCédulas:\n{cedulas_info}\n\n{firma_info}"
+        popup = generar_popup("Información del Doctor", "Información agregada:", mensaje)
+        popup.exec()
+    else:
+        popup = generar_popup("Error", "Doctor no encontrado", "No se encontró información para el doctor especificado.")
+        popup.exec()
 
 def crear_formulario_firma():
     global imagen_path
@@ -144,6 +204,7 @@ def crear_formulario_firma():
     boton_4 = QPushButton("+")
     boton_4.setStyleSheet(estilo_boton_formulario)
     boton_4.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+    boton_4.clicked.connect(añadir_nueva_celula)
 
     layout_horizontal_4.addWidget(label_4)
     layout_horizontal_4.addWidget(input_text_4)
@@ -165,7 +226,7 @@ def crear_formulario_firma():
     cedula_input = input_text_4
     titulo_input = input_text_2
 
-    boton_enviar.clicked.connect(añadir_nueva_celula)
+    boton_enviar.clicked.connect(mostrar_informacion_doctor)
 
     layout_botones = QHBoxLayout()
     layout_botones.addWidget(boton_enviar)

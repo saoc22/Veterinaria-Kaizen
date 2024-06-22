@@ -1,0 +1,19 @@
+{
+    "Pedro": {
+        "cedulas": [
+            {
+                "titulo": "untitulo",
+                "cedula": "11111"
+            },
+            {
+                "titulo": "dostitulo",
+                "cedula": "222222"
+            },
+            {
+                "titulo": "trestitulo",
+                "cedula": "333333"
+            }
+        ],
+        "firma": "C:\\Users\\Naholyt\\Documents\\Ayax\\Veterinaria-Kaizen\\Firmas\\Pedro\\pfirma.jpg"
+    }
+}
