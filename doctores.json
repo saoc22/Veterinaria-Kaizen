@@ -15,5 +15,18 @@
             }
         ],
         "firma": "C:\\Users\\Naholyt\\Documents\\Ayax\\Veterinaria-Kaizen\\Firmas\\Pedro\\pfirma.jpg"
+    },
+    "Ayax Ortega Cordova": {
+        "cedulas": [
+            {
+                "titulo": "Checador de sangre",
+                "cedula": "12345"
+            },
+            {
+                "titulo": "Checador de sangre",
+                "cedula": "54321"
+            }
+        ],
+        "firma": "C:\\Users\\Unbewohnt\\Documents\\Proyectos\\Veterinaria-Kaizen\\Firmas\\Ayax Ortega Cordova\\pfirma.jpg"
     }
 }
