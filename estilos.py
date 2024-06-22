@@ -64,6 +64,21 @@ estilo_input_text = '''
   
 '''
 
+estilo_input_text_hemograma = '''
+  border: 1px solid #C2C2C2;
+  background-color:white;
+  font-size:18px;
+  max-width: 290px;
+  
+'''
+estilo_input_text_nucleados = '''
+  border: 1px solid #C2C2C2;
+  background-color:white;
+  font-size:18px;
+  max-width: 100px;
+  
+'''
+
 estilo_input_text_antibiotico = '''
   border: 1px solid #C2C2C2;
   background-color:white;
