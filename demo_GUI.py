@@ -356,12 +356,12 @@ def crear_botones_desplazables():
   
     botones_info = [
         ("Hemograma", elegir_raza_hemograma),
-        ("Urianalisis", pantalla_urianalisis),
-        ("Bioquimica", elegir_raza_bioquimica),
+        ("Urianálisis", pantalla_urianalisis),
+        ("Bioquímica", elegir_raza_bioquimica),
         ("Sub-Bioquimica", en_progreso),
-        ("Endocrinologia", en_progreso),
-        ("Citologia", pantalla_citologia),
-        ("Liquidos Corporales", en_progreso),
+        ("Endocrinología", en_progreso),
+        ("Citología", pantalla_citologia),
+        ("Líquidos Corporales", en_progreso),
         ("Prot/Creat", en_progreso),
         ("TP/TPPa", en_progreso)
     ]
@@ -378,12 +378,12 @@ def crear_botones_desplazables_enfermedades_infecciosas():
     layout_desplazable = QVBoxLayout(widget_desplazable)
   
     botones_info = [
-        ("Analisis Micologico", en_progreso),
-        ("Dx Micro Otitis 1 oido", pantalla_otis1),
-        ("Dx Micro Otitis 2 oidos", pantalla_otis1),
-        ("Diagnostico Bacteriologico con antiorama", pantalla_otis1),
-        ("Bacteriologia", en_progreso),
-        ("Parasitologia", en_progreso),
+        ("Análisis Micológico", en_progreso),
+        ("Dx Micro Otitis 1 oído", pantalla_otis1),
+        ("Dx Micro Otitis 2 oídos", pantalla_otis1),
+        ("Diagnóstico Bacteriologico con antiograma", pantalla_otis1),
+        ("Bacteriología", en_progreso),
+        ("Parasitología", en_progreso),
         ("KOH", pantalla_koh),
         ("Patologia molecular", en_progreso),
         ("Urocultivo con antiograma", en_progreso)
@@ -455,7 +455,7 @@ def pantalla_formatos():
     limpiar_widgets()
 
     #Boton de Patologia clinica
-    button = QPushButton("Patologia \n clinica")
+    button = QPushButton("Patología \n clinica")
     button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
     button.setStyleSheet(estilo_boton_pestaña)
     button.clicked.connect(pantalla_formatos)

@@ -194,11 +194,11 @@ def crear_formulario_firma():
     # Cuarto elemento: Cedula
     layout_horizontal_4 = QHBoxLayout()
 
-    label_4 = QLabel("Cedula:  ")
+    label_4 = QLabel("Cédula:  ")
     label_4.setStyleSheet(estilo_label_formulario)
 
     input_text_4 = QLineEdit()
-    input_text_4.setPlaceholderText("Cedula...")
+    input_text_4.setPlaceholderText("Cédula...")
     input_text_4.setStyleSheet(estilo_input_text)
 
     boton_4 = QPushButton("+")
