@@ -1,7 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget, QButtonGroup, QFileDialog, QGridLayout, QScrollArea,QLineEdit,QFormLayout,QTextEdit,QHBoxLayout,QCheckBox
-from PyQt5.QtGui import QPixmap
-from PyQt5 import QtGui, QtCore
-from PyQt5.QtGui import QCursor
+from PyQt5.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QButtonGroup, QFileDialog,QLineEdit,QTextEdit,QHBoxLayout,QCheckBox
+from PyQt5.QtCore import Qt
 from estilos import *
 from pdf_urianalisis import *
 
@@ -74,6 +72,18 @@ def crear_formato_otis1_completo():
         ("B8:", QLineEdit("")),
         ("C8:", QLineEdit("")),
     ]
+
+    # Título y sección de datos del paciente
+    titulo_paciente = QLabel("Datos del paciente")
+    titulo_paciente.setAlignment(Qt.AlignCenter)  # Centra el título
+    titulo_paciente.setStyleSheet("font-size: 20px; font-weight: bold;")
+    layout_principal.addWidget(titulo_paciente) 
+    titulo_linea = QWidget() #Separador
+    titulo_linea.setFixedHeight(10)
+    titulo_linea.setStyleSheet("background-color: #C2C2C2;") 
+    layout_principal.addWidget(titulo_linea)
+
+
     # Iterar sobre cada campo y agregarlo al layout principal
     bandera = 0
     for etiqueta, editor in campos:
@@ -114,6 +124,18 @@ def crear_formato_otis1_completo():
               layout_horizontal.addWidget(cb_femenino)
               layout_horizontal.addWidget(cb_castrado)
         layout_principal.addLayout(layout_horizontal)
+
+    # Título y sección de datos del analisis
+    titulo_paciente = QLabel("Analitos")
+    titulo_paciente.setAlignment(Qt.AlignCenter)  # Centra el título
+    titulo_paciente.setStyleSheet("font-size: 20px; font-weight: bold;")
+    layout_principal.addWidget(titulo_paciente)
+    titulo_linea = QWidget()#Separador
+    titulo_linea.setFixedHeight(10)
+    titulo_linea.setStyleSheet("background-color: #C2C2C2;") 
+    layout_principal.addWidget(titulo_linea)
+
+
     for i in range(0, 29, 4):
       layout_horizontal1 = QHBoxLayout()
       layout_horizontal2 = QHBoxLayout()
@@ -163,6 +185,18 @@ def crear_formato_otis1_completo():
       ("Interpretacion:", QTextEdit("")),
       ("Resultado micológico:", QTextEdit("")),
     ]
+
+
+    # Título y sección de los comentarios
+    titulo_paciente = QLabel("Interpretaciones y comentarios")
+    titulo_paciente.setAlignment(Qt.AlignCenter)  # Centra el título
+    titulo_paciente.setStyleSheet("font-size: 20px; font-weight: bold;")
+    layout_principal.addWidget(titulo_paciente)
+    titulo_linea = QWidget()#Separador
+    titulo_linea.setFixedHeight(10)
+    titulo_linea.setStyleSheet("background-color: #C2C2C2;") 
+    layout_principal.addWidget(titulo_linea)
+
 
     for etiqueta, editor in campos_finales:
         layout_horizontal1 = QHBoxLayout()
