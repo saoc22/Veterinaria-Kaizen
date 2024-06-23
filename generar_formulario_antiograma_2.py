@@ -24,7 +24,7 @@ def crear_formato_antiograma_completo():
         ("Número de caso:", QLineEdit("")),
         ("Fecha y hora de muestro:", QLineEdit("")),
         ("Fecha de recepción:", QLineEdit("")),
-        ("Fecha de emisión de resultado:", QLineEdit("")),
+        ("Fecha de emisión resultado:", QLineEdit("")),
         ("Nombre paciente:", QLineEdit("")),
         ("Raza:", QLineEdit()),
         ("Edad:", QLineEdit("")),
