@@ -26,7 +26,7 @@ def crear_formato_KOH_completo():
         ("Número de caso:", QLineEdit("")),
         ("Fecha y hora de muestro:", QLineEdit("")),
         ("Fecha de recepción:", QLineEdit("")),
-        ("Fecha de emisión de resultado:", QLineEdit("")),
+        ("Fecha de emisión resultado:", QLineEdit("")),
         ("Nombre paciente:", QLineEdit("")),
         ("Raza:", QLineEdit()),
         ("Edad:", QLineEdit("")),
@@ -41,6 +41,7 @@ def crear_formato_KOH_completo():
 
     # Iterar sobre cada campo y agregarlo al layout principal
     bandera = 0
+    # Iterar sobre cada campo y agregarlo al layout principal
     for etiqueta, editor in campos:
         layout_horizontal = QHBoxLayout()
         label = QLabel(etiqueta)
@@ -48,10 +49,21 @@ def crear_formato_KOH_completo():
         if editor:
             if isinstance(editor, QLineEdit):
                 editor.setStyleSheet(estilo_input_text)
+                layout_horizontal.addWidget(label)
+                layout_horizontal.addWidget(editor)
             else:  # Es QTextEdit
-                editor.setStyleSheet(estilo_textedit_formulario)
-            layout_horizontal.addWidget(label)
-            layout_horizontal.addWidget(editor)
+                editor.setStyleSheet(estilo_textedit_formulario_citologia)
+                layout_horizontal2 = QHBoxLayout()
+                layout_horizontal.addWidget(label)
+                layout_horizontal2.addWidget(editor)
+                layout_principal.addLayout(layout_horizontal)
+                layout_principal.addLayout(layout_horizontal2)
+                #Separador
+                separador = QWidget()
+                separador.setFixedHeight(70)
+                separador.setStyleSheet("background-color: transparent;") 
+                layout_principal.addWidget(separador)
+                bandera = 1
         else:
             if etiqueta == 'Sexo:':
               # Crear checkboxes para el sexo
@@ -72,7 +84,10 @@ def crear_formato_KOH_completo():
               layout_horizontal.addWidget(cb_masculino)
               layout_horizontal.addWidget(cb_femenino)
               layout_horizontal.addWidget(cb_castrado)
-        layout_principal.addLayout(layout_horizontal)
+        if bandera == 1:
+          bandera = 0
+        else:
+          layout_principal.addLayout(layout_horizontal)
 
     separador = QWidget()
     separador.setFixedHeight(30)
