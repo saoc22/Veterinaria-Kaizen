@@ -1,20 +1,21 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QSpacerItem, QVBoxLayout, QSizePolicy, QButtonGroup, QWidget, QFileDialog, QGridLayout, QScrollArea,QLineEdit,QFormLayout,QTextEdit,QHBoxLayout,QCheckBox
+from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QSpacerItem, QVBoxLayout, QSizePolicy, QButtonGroup, QWidget, QFileDialog, QGridLayout, QScrollArea, QLineEdit, QFormLayout, QTextEdit, QHBoxLayout, QCheckBox, QComboBox
 from PyQt5.QtGui import QPixmap
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QCursor
 from estilos import *
 from pdf_citologia import *
+import json
+from pathlib import Path
 
-def cargar_firma():
-    file_dialog = QFileDialog()
-    file_dialog.setNameFilter("Archivos de imagen (*.jpg *.png)")
-    file_dialog.setDefaultSuffix("jpg")
+# Ruta del archivo JSON
+json_file_path = "doctores.json"
 
-    if file_dialog.exec_():
-        selected_files = file_dialog.selectedFiles()
-        if selected_files:
-            return selected_files[0]  # Retorna la ruta del archivo seleccionado
-    return None
+def cargar_json():
+    if not Path(json_file_path).exists():
+        with open(json_file_path, 'w') as file:
+            json.dump({}, file)
+    with open(json_file_path, 'r') as file:
+        return json.load(file)
 
 def crear_formato_citologia_completo():
     # Widget principal del formulario
@@ -84,8 +85,6 @@ def crear_formato_citologia_completo():
               layout_horizontal2.addWidget(cb_hisopado)
               layout_horizontal2.addWidget(cb_raspado)
               bandera = 1
-              # spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-              # layout_horizontal2.addItem(spacer)  # Añade el spacer al inicio para empujar a la derecha
               layout_principal.addLayout(layout_horizontal)
               layout_principal.addLayout(layout_horizontal2)
 
@@ -118,23 +117,33 @@ def crear_formato_citologia_completo():
     separador.setStyleSheet("background-color: transparent;") 
     layout_principal.addWidget(separador)
 
+    # Añadir el combo box para seleccionar firma
+    layout_horizontal_firma = QHBoxLayout()
+    label_firma = QLabel("Seleccionar firma del doctor:")
+    label_firma.setStyleSheet(estilo_label_formulario)
+    combo_box_firma = QComboBox()
+    combo_box_firma.setStyleSheet(estilo_input_text)
+
+    # Cargar los nombres de los doctores desde el JSON
+    data = cargar_json()
+    for doctor in data.keys():
+        combo_box_firma.addItem(doctor)
+
+    layout_horizontal_firma.addWidget(label_firma)
+    layout_horizontal_firma.addWidget(combo_box_firma)
+    layout_principal.addLayout(layout_horizontal_firma)
+
     # Añadir botones al final del formulario
     layout_botones = QHBoxLayout()
-    boton_firma = QPushButton("Seleccionar firma")
     boton_reporte = QPushButton("Generar reporte")
-    boton_firma.setStyleSheet(estilo_boton_formulario)
     boton_reporte.setStyleSheet(estilo_boton_formulario)
-    layout_botones.addWidget(boton_firma)
     layout_botones.addWidget(boton_reporte)
     layout_principal.addLayout(layout_botones)
 
-    
-    def seleccionar_firma():
-      global ruta_firma
-      ruta_firma = cargar_firma()
-
     def boton_reporte_clicked():
       # Crear diccionario con los valores del formulario
+      doctor_seleccionado = combo_box_firma.currentText()
+      firma_path = data[doctor_seleccionado]["firma"] if doctor_seleccionado in data else ""
 
       valores = {
           "datos_caso": campos[0][1].text(),
@@ -156,7 +165,7 @@ def crear_formato_citologia_completo():
           "inter": campos[15][1].toPlainText(),
           "diag": campos[16][1].toPlainText(),
           "comen": campos[17][1].toPlainText(),
-          "firma_path": ruta_firma,
+          "firma_path": firma_path,
           "paf": "y" if cb_paf.isChecked() else "n",
           "acaf": "y" if cb_acaf.isChecked() else "n",
           "impro": "y" if cb_impro.isChecked() else "n",
@@ -166,9 +175,7 @@ def crear_formato_citologia_completo():
       print(valores)
       generar_citologia(valores)
   
-    
     boton_reporte.clicked.connect(boton_reporte_clicked)
-    boton_firma.clicked.connect(seleccionar_firma)
 
     return widget_principal
 
