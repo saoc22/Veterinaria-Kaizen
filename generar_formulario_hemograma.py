@@ -126,7 +126,7 @@ def crear_formato_hemograma_completo(raza):
       ("Número de caso:", QLineEdit("Default Case Number")),
       ("Fecha y hora de muestro:", QLineEdit("01/01/2024 12:00")),
       ("Fecha de recepción:", QLineEdit("01/01/2024")),
-      ("Fecha de emisión de resultado:", QLineEdit("01/01/2024")),
+      ("Fecha de emisión resultado:", QLineEdit("01/01/2024")),
       ("Nombre paciente:", QLineEdit("Nombre Predeterminado")),
       ("Raza:", QLineEdit(raza)),
       ("Edad:", QLineEdit("Edad Predeterminada")),
