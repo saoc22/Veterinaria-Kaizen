@@ -49,6 +49,14 @@ estilo_label_formulario = '''
   font-weight: bold;
 '''
 
+estilo_label_formulario_subtitulo = '''
+  border: 1px solid 'white';
+  font-size: 20px;
+  margin-top:10px;
+  color: #56BE94;
+  font-weight: bold;
+'''
+
 estilo_label_limites = '''
   border: 1px solid 'white';
   font-size: 18px;
@@ -61,6 +69,22 @@ estilo_input_text = '''
   background-color:white;
   font-size:18px;
   max-width: 310px;
+  
+'''
+
+estilo_input_text_firma_prob = '''
+  border: 1px solid #C2C2C2;
+  background-color:white;
+  font-size:18px;
+  max-width: 473px;
+  
+'''
+
+estilo_input_text_endocri = '''
+  border: 1px solid #C2C2C2;
+  background-color:white;
+  font-size:18px;
+  max-width: 200px;
   
 '''
 
@@ -133,6 +157,22 @@ estilo_boton_terminar_formulario = '''
   
 '''
 
+estilo_boton_terminar_formulario_firma = '''
+*{
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px;
+    max-width: 150px;
+    padding: 10px;
+    background-color:#56BE94;
+}
+*:hover{
+    background: '#367368';
+    color: white;
+    font-size:19px;
+}
+  
+'''
 
 
 estilo_checkbox = '''

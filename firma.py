@@ -143,7 +143,7 @@ def crear_formulario_firma():
     # Primer elemento: Cargar archivos
     layout_horizontal_1 = QHBoxLayout()
 
-    label_1 = QLabel("Cargar \narchivos:")
+    label_1 = QLabel("Cargar \nimagen:")
     label_1.setStyleSheet(estilo_label_formulario)
 
     input_text_1 = QLineEdit()
@@ -169,7 +169,7 @@ def crear_formulario_firma():
 
     input_text_3 = QLineEdit()
     input_text_3.setPlaceholderText("Nombre...")
-    input_text_3.setStyleSheet(estilo_input_text)
+    input_text_3.setStyleSheet(estilo_input_text_firma_prob)
 
     layout_horizontal_3.addWidget(label_3)
     layout_horizontal_3.addWidget(input_text_3)
@@ -184,7 +184,7 @@ def crear_formulario_firma():
 
     input_text_2 = QLineEdit()
     input_text_2.setPlaceholderText("Titulos...")
-    input_text_2.setStyleSheet(estilo_input_text)
+    input_text_2.setStyleSheet(estilo_input_text_firma_prob)
 
     layout_horizontal_2.addWidget(label_2)
     layout_horizontal_2.addWidget(input_text_2)
@@ -216,8 +216,8 @@ def crear_formulario_firma():
     boton_enviar = QPushButton("Añadir")
     boton_cancelar = QPushButton("Cancelar")
 
-    boton_enviar.setStyleSheet(estilo_boton_terminar_formulario)
-    boton_cancelar.setStyleSheet(estilo_boton_terminar_formulario)
+    boton_enviar.setStyleSheet(estilo_boton_terminar_formulario_firma)
+    boton_cancelar.setStyleSheet(estilo_boton_terminar_formulario_firma)
 
     boton_enviar.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
     boton_cancelar.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
@@ -233,5 +233,11 @@ def crear_formulario_firma():
     layout_botones.addWidget(boton_cancelar)
 
     layout_formulario.addLayout(layout_botones)
+
+    #Separador
+    separador = QWidget()
+    separador.setFixedHeight(300)
+    separador.setStyleSheet("background-color: transparent;") 
+    layout_formulario.addWidget(separador)
 
     return widget_formulario
