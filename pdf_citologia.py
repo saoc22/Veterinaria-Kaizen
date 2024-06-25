@@ -29,7 +29,7 @@ def generar_citologia(valores):
   pdf.add_font('RalewayB', '', 'font/Raleway-Bold.ttf', uni=True)
 
   pdf.set_font('RalewayB', '', 12)
-  pdf.cell(w=0, h=15, txt='URIANALISIS', border=0, ln=1, align='C', fill=0)
+  pdf.cell(w=0, h=15, txt='CITOLOGÍA', border=0, ln=1, align='C', fill=0)
 
   ##################Informacion basica
   pdf.set_font('RalewayB', '', 11)
