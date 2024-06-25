@@ -37,5 +37,14 @@
             }
         ],
         "firma": "C:\\Users\\Unbewohnt\\Documents\\Proyectos\\Veterinaria-Kaizen\\Firmas\\Jesus sandoval\\pfirma.jpg"
+    },
+    "Sandre Ivette Cuevas": {
+        "cedulas": [
+            {
+                "titulo": "Veterinaria",
+                "cedula": "12345"
+            }
+        ],
+        "firma": "C:\\Users\\Unbewohnt\\Documents\\Proyectos\\Veterinaria-Kaizen\\Firmas\\Sandre Ivette Cuevas\\pfirma.jpg"
     }
 }
