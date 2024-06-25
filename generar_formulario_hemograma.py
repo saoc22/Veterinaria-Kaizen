@@ -25,8 +25,8 @@ def crear_formato_hemograma_completo(raza):
         try:
             hematocrito = float(campos_comunes[12][1].text())  # Asume que hematocrito está en posición 12
             eritrocitos = float(campos_comunes[14][1].text())  # Asume que eritrocitos está en posición 14
-            vgm = hematocrito *1000/ eritrocitos  # Fórmula simplificada
-            labels_especiales["VGM:"].setText(f"{vgm:.2f}")  # Establece el valor en el label
+            vgm = int(hematocrito *1000/ eritrocitos)  # Fórmula simplificada
+            labels_especiales["VGM:"].setText(str(vgm))  # Establece el valor en el label
         except ValueError:
             labels_especiales["VGM:"].setText("Error")
 
@@ -35,8 +35,8 @@ def crear_formato_hemograma_completo(raza):
         try:
             hemoglobina = float(campos_comunes[13][1].text())  # Asume que hemoglobina está en posición 13
             hematocrito = float(campos_comunes[12][1].text())  # Asume que hematocrito está en posición 12
-            cgmh = (hemoglobina / hematocrito)  # Fórmula simplificada
-            labels_especiales["CGMH:"].setText(f"{cgmh:.2f}")  # Establece el valor en el label
+            cgmh = int((hemoglobina / hematocrito))  # Fórmula simplificada
+            labels_especiales["CGMH:"].setText(str(cgmh))  # Establece el valor en el label
         except ValueError:
             labels_especiales["CGMH:"].setText("Error")
 

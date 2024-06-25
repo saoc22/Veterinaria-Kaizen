@@ -389,17 +389,17 @@ def generar_hemograma(valores):
   pdf.set_font('RalewayB', '', 10)
   pdf.set_text_color(0, 0, 0)
   pdf.cell(w=44, h=5, txt='VGM', border='LR', align='L', ln=0, fill=0)
-  vgm = (float(hematocritoRes)*1000)/float(eritrocitosRes)
+  vgm = int((float(hematocritoRes)*1000)/float(eritrocitosRes))
   min_vgm, max_vgm, txt_vgm = limites['VGM']
-  if float(vgm)<min_vgm or float(vgm)>max_vgm:
+  if (vgm)<min_vgm or (vgm)>max_vgm:
       pdf.set_font('RalewayB', '', 11)
   else:
       pdf.set_font('Raleway', '', 10)
-  pdf.cell(w=39, h=5, txt=str("{:.2f}".format(vgm)), border='LR', align='C', ln=0, fill=0)
-  if float(vgm)<min_vgm:
+  pdf.cell(w=39, h=5, txt=str(vgm), border='LR', align='C', ln=0, fill=0)
+  if (vgm)<min_vgm:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
-  elif float(vgm)>max_vgm:
+  elif (vgm)>max_vgm:
     pdf.set_font('RedditSans-Regular', '', 10)
     pdf.cell(w=5, h=5, txt= '↑', border='LR', align='C', ln=0, fill=0)
   else:
@@ -414,15 +414,15 @@ def generar_hemograma(valores):
   pdf.set_font('RalewayB', '', 10)
   pdf.set_text_color(0, 0, 0)
   pdf.cell(w=44, h=5, txt='CGMH', border='LR', align='L', ln=0, fill=0)
-  cgmh = float(hemoglobinaRes)/float(hematocritoRes)
+  cgmh = int(float(hemoglobinaRes)/float(hematocritoRes))
   if raza.lower() == 'cachorro':
     ucgmh, txt_cgmh = limites['CGMH']
-    if float(cgmh)!=ucgmh:
+    if (cgmh)!=ucgmh:
       pdf.set_font('RalewayB', '', 11)
     else:
       pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=str("{:.2f}".format(cgmh)), border='LR', align='C', ln=0, fill=0)
-    if float(cgmh)!=ucgmh:
+    pdf.cell(w=39, h=5, txt=str(cgmh), border='LR', align='C', ln=0, fill=0)
+    if (cgmh)!=ucgmh:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt= '!', border='LR', align='C', ln=0, fill=0)
     else:
@@ -432,15 +432,15 @@ def generar_hemograma(valores):
     pdf.cell(w=44, h=5, txt=txt_cgmh, border='LR', align='C', ln=1, fill=0)
   else:
     min_cgmh, max_cgmh, txt_cgmh = limites['CGMH']
-    if float(cgmh)<min_cgmh or float(cgmh)>max_cgmh:
+    if (cgmh)<min_cgmh or (cgmh)>max_cgmh:
       pdf.set_font('RalewayB', '', 11)
     else:
       pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=str("{:.2f}".format(cgmh)), border='LR', align='C', ln=0, fill=0)
-    if float(cgmh)<min_cgmh:
+    pdf.cell(w=39, h=5, txt=str(cgmh), border='LR', align='C', ln=0, fill=0)
+    if (cgmh)<min_cgmh:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt= '↓', border='LR', align='C', ln=0, fill=0)
-    elif float(cgmh)>max_cgmh:
+    elif (cgmh)>max_cgmh:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt= '↑', border='LR', align='C', ln=0, fill=0)
     else:
@@ -461,7 +461,7 @@ def generar_hemograma(valores):
         pdf.set_font('RalewayB', '', 11)
     else:
         pdf.set_font('Raleway', '', 10)
-    pdf.cell(w=39, h=5, txt=reticulocitosRes, border='LR', align='C', ln=0, fill=0)
+    pdf.cell(w=39, h=5, txt=str(int(reticulocitosRes)), border='LR', align='C', ln=0, fill=0)
     if float(reticulocitosRes)>ureti:
       pdf.set_font('RedditSans-Regular', '', 10)
       pdf.cell(w=5, h=5, txt= '↑', border='LR', align='C', ln=0, fill=0)
