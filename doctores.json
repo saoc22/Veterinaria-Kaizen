@@ -28,5 +28,14 @@
             }
         ],
         "firma": "C:\\Users\\Unbewohnt\\Documents\\Proyectos\\Veterinaria-Kaizen\\Firmas\\Ayax Ortega Cordova\\pfirma.jpg"
+    },
+    "Jesus sandoval": {
+        "cedulas": [
+            {
+                "titulo": "Veterinario",
+                "cedula": "12345"
+            }
+        ],
+        "firma": "C:\\Users\\Unbewohnt\\Documents\\Proyectos\\Veterinaria-Kaizen\\Firmas\\Jesus sandoval\\pfirma.jpg"
     }
 }
