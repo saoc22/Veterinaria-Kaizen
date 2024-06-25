@@ -1,7 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QSpacerItem, QVBoxLayout, QSizePolicy, QButtonGroup, QWidget, QFileDialog, QGridLayout, QScrollArea, QLineEdit, QFormLayout, QTextEdit, QHBoxLayout, QCheckBox, QComboBox
-from PyQt5.QtGui import QPixmap
-from PyQt5 import QtGui, QtCore
-from PyQt5.QtGui import QCursor
+from PyQt5.QtWidgets import QLabel, QPushButton, QVBoxLayout, QButtonGroup, QWidget, QLineEdit, QTextEdit, QHBoxLayout, QCheckBox, QComboBox
 from estilos import *
 from pdf_citologia import *
 import json
