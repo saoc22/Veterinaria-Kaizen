@@ -6,6 +6,7 @@ from generar_formulario_hemograma import *
 from generar_formulario_bioquimica import *
 from generar_formulario_urianalisis import *
 from generar_formulario_citologia import *
+from generar_formulario_endocrinologia import *
 from generar_formulario_koh import *
 from generar_formulario_otis1 import *
 from generar_formulario_antiograma_2 import *
@@ -139,6 +140,19 @@ def pantalla_citologia():
     scroll_area.setWidgetResizable(True)
     scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
     botones_widget = crear_formato_citologia_completo() 
+    scroll_area.setWidget(botones_widget)
+    scroll_area.setStyleSheet(estilo_scroll_area)
+    widgets["scrollarea"].append(scroll_area) 
+
+    grid.addWidget(widgets["scrollarea"][-1], 2, 0,1,4)
+
+def pantalla_endocrinologia():
+    limpiar_Area()
+    #Scroll area para los botones
+    scroll_area = QScrollArea()
+    scroll_area.setWidgetResizable(True)
+    scroll_area.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+    botones_widget = crear_formato_endocrinologia_completo() 
     scroll_area.setWidget(botones_widget)
     scroll_area.setStyleSheet(estilo_scroll_area)
     widgets["scrollarea"].append(scroll_area) 
@@ -372,7 +386,7 @@ def crear_botones_desplazables():
         ("Urianálisis", pantalla_urianalisis),
         ("Bioquímica", elegir_raza_bioquimica),
         ("Sub-Bioquimica", en_progreso),
-        ("Endocrinología", en_progreso),
+        ("Endocrinología", pantalla_endocrinologia),
         ("Citología", pantalla_citologia),
         ("Líquidos Corporales", en_progreso),
         ("Prot/Creat", en_progreso),
