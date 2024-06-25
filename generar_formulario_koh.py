@@ -1,9 +1,6 @@
-from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget, QButtonGroup, QFileDialog, QGridLayout, QScrollArea,QLineEdit,QFormLayout,QTextEdit,QHBoxLayout,QCheckBox
-from PyQt5.QtGui import QPixmap
-from PyQt5 import QtGui, QtCore
-from PyQt5.QtGui import QCursor
+from PyQt5.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QButtonGroup, QFileDialog,QLineEdit,QTextEdit,QHBoxLayout,QCheckBox
 from estilos import *
-from pdf_urianalisis import *
+from pdf_koh import *
 
 def cargar_firma():
     file_dialog = QFileDialog()
@@ -131,7 +128,7 @@ def crear_formato_KOH_completo():
           "firma_path": ruta_firma
       }
       print(valores)
-      #generar_urianalisis(valores)
+      generar_koh(valores)
   
     
     boton_reporte.clicked.connect(boton_reporte_clicked)
